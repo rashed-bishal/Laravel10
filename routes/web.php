@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PersonController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +17,6 @@ Route::get('/', function () {
 });
 
 
-Route::get('testperson', function(){
-    $person = new PersonController();
-    return $person->address();
+Route::get('test/{id}', function($uniq){
+    return $uniq;
 });
