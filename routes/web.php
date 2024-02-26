@@ -14,9 +14,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+})->name('main');
+
+
+Route::get('test/{id}/{trott}', function($uniq,$teris){
+    return $uniq.$teris;
+})->name('testify');
+
+Route::get('contact', function(){
+    return "<a href='".route('main')."'>Main Page</a>";
 });
 
-
-Route::get('test/{id}', function($uniq){
-    return $uniq;
+Route::get('gotest', function(){
+    return "<a href='".route('testify',['canton','xinxian'])."'>Test Page</a>";
 });
