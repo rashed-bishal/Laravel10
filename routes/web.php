@@ -17,14 +17,20 @@ Route::get('/', function () {
 })->name('main');
 
 
-Route::get('test/{id}/{trott}', function($uniq,$teris){
-    return $uniq.$teris;
-})->name('testify');
 
-Route::get('contact', function(){
-    return "<a href='".route('main')."'>Main Page</a>";
+Route::group(['prefix' => 'customer'], function(){
+
+    Route::get('show', function(){
+        return "<h1>User is Showing</h1>";
+    });
+    
+    Route::get('edit', function(){
+        return "<h1>User is Editing</h1>";
+    });
+    
+    Route::get('delete', function(){
+        return "<h1>User is Erasing</h1>";
+    });
 });
 
-Route::get('gotest', function(){
-    return "<a href='".route('testify',['canton','xinxian'])."'>Test Page</a>";
-});
+
