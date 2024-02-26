@@ -34,3 +34,6 @@ Route::group(['prefix' => 'customer'], function(){
 });
 
 
+Route::fallback(function(){
+    return 'You are lost!';
+});
