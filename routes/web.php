@@ -13,7 +13,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    $str1 = "bangladesh";
+    $str2 = "United States of America";
+    return view('test', ['str1' => $str1, 'str2' => $str2]);
+})->name('main');
+
+Route::get('/now', function () {
+
+    $str1 = "bangladesh";
+    $str2 = "United States of America";
+    return view('test', compact('str1', 'str2'));
+})->name('main');
+
+Route::get('/another', function () {
+
+    $str1 = "bangladesh";
+    $str2 = "United States of America";
+    return view('test')->with(['str1'=>$str1, 'str2'=>$str2]);
 })->name('main');
 
 
