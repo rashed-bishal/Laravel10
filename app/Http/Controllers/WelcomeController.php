@@ -12,7 +12,15 @@ class WelcomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return DB::table('posts')->where('id', 151)->first();
-        //return view('welcome');
+        $insert = DB::table('posts')->insert([
+            'title'=>'Epilogue',
+            'description' => 'A quick brown fox jumps over the lazy dog',
+            'status' => 0,
+            'published_date' => date('Y-m-d'),
+            'user_id' => 104,
+
+        ]);
+
+        return  $insert;
     }
 }
