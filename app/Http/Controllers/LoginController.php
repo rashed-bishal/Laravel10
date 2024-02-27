@@ -13,6 +13,13 @@ class LoginController extends Controller
 
     public function handleLogin(Request $request)
     {
-        dd($request->password);
+
+        $request->validate([
+            'username' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        dd($request->all());
     }
 }
