@@ -12,8 +12,7 @@ class WelcomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return DB::table('posts')->get();
-
+        return DB::table('posts')->pluck('description', 'title');
         //return view('welcome');
     }
 }
