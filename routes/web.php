@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,10 @@ Route::get('/', WelcomeController::class);
 Route::get('/test',AboutController::class);
 
 Route::resource('blog', BlogController::class);
+
+Route::get('login', [LoginController::class, 'index'])->name('login');
+
+Route::post('login',[LoginController::class, 'handleLogin'])->name('login.submit');
 
 Route::fallback(function(){
     return 'You are lost!';
