@@ -12,7 +12,7 @@ class WelcomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return DB::table('posts')->pluck('description', 'title');
+        return DB::table('posts')->where('id', 151)->first();
         //return view('welcome');
     }
 }
