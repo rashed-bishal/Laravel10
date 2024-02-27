@@ -18,6 +18,11 @@ class LoginController extends Controller
             'username' => 'required',
             'email' => 'required|email',
             'password' => 'required',
+        ],[
+            'username.required' => 'Why did you keep username field empty?',
+            'email.required' => 'Why did you keep email field empty?',
+            'email.email' => 'Invalid Email format',
+            'password' => 'You left Password field empty.',
         ]);
 
         dd($request->all());
