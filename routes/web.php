@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\TestController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,26 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', [WelcomeController::class, 'index']);
 
-    $str1 = "bangladesh";
-    $str2 = "United States of America";
-    return view('test', ['str1' => $str1, 'str2' => $str2]);
-})->name('main');
-
-Route::get('/now', function () {
-
-    $str1 = "bangladesh";
-    $str2 = "United States of America";
-    return view('test', compact('str1', 'str2'));
-})->name('main');
-
-Route::get('/another', function () {
-
-    $str1 = "bangladesh";
-    $str2 = "United States of America";
-    return view('test')->with(['str1'=>$str1, 'str2'=>$str2]);
-})->name('main');
+Route::get('/test',[TestController::class, 'index']);
 
 
 
