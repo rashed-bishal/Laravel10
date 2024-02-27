@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogController;
 
 /*
@@ -16,9 +16,9 @@ use App\Http\Controllers\BlogController;
 |
 */
 
-Route::get('/', [WelcomeController::class, 'index']);
+Route::get('/', WelcomeController::class);
 
-Route::get('/test',[TestController::class, 'index']);
+Route::get('/test',AboutController::class);
 
 Route::resource('blog', BlogController::class);
 
