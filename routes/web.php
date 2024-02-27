@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,23 +20,7 @@ Route::get('/', [WelcomeController::class, 'index']);
 
 Route::get('/test',[TestController::class, 'index']);
 
-
-
-Route::group(['prefix' => 'customer'], function(){
-
-    Route::get('show', function(){
-        return "<h1>User is Showing</h1>";
-    });
-    
-    Route::get('edit', function(){
-        return "<h1>User is Editing</h1>";
-    });
-    
-    Route::get('delete', function(){
-        return "<h1>User is Erasing</h1>";
-    });
-});
-
+Route::resource('blog', BlogController::class);
 
 Route::fallback(function(){
     return 'You are lost!';
