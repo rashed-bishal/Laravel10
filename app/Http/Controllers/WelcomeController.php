@@ -12,12 +12,8 @@ class WelcomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        DB::table('posts')->where('id',1)->update([
+        DB::table('posts')->where('id',1)->delete();
 
-            'title'=>'Digital',
-            'description' => 'Digitally Signed',
-        ]);
-
-        dd('success');
+        dd('successfully deleted!');
     }
 }
