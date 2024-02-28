@@ -12,8 +12,8 @@ class WelcomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        DB::table('posts')->where('id',1)->delete();
-
-        dd('successfully deleted!');
+        return DB::table('posts')->join('categories', 'posts.category_id', '=', 'categories.id')
+        ->select('posts.title', 'categories.name')
+        ->get();
     }
 }
