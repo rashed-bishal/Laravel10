@@ -13,6 +13,6 @@ class WelcomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return Post::findOrFail(3);
+        return Post::where('category_id',2)->orWhere('id',1)->get();
     }
 }
