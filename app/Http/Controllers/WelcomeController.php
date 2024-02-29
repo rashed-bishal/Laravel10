@@ -13,11 +13,8 @@ class WelcomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $post = Post::where('id', 8)->first();
-        $post->description = 'This inside Eighth Post';
-        $post->update();
+        $post = Post::where('id',7)->delete();
 
-        dd('updated');
-
+        dd('Data successfully erased');
     }
 }
