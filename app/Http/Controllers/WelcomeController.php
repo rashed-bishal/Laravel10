@@ -12,8 +12,6 @@ class WelcomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return DB::table('posts')->join('categories', 'posts.category_id', '=', 'categories.id')
-        ->select('posts.title', 'categories.name')
-        ->get();
+        return DB::table('posts')->avg('category_id');
     }
 }
