@@ -13,6 +13,16 @@ class WelcomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return Post::where('category_id',2)->orWhere('id',1)->get();
+        $post = new Post();
+        $post->title = '8th Post';
+        $post->description = 'This is inside eighth post';
+        $post->status = false;
+        $post->published_date = date('Y-m-d');
+        $post->user_id = 3549;
+        $post->category_id = 4;
+        $post->save();
+
+        dd($post->all());
+
     }
 }
