@@ -14,7 +14,7 @@ class WelcomeController extends Controller
     public function __invoke(Request $request)
     {
         
-        return Post::onlyTrashed()->get();
+        return Post::onlyTrashed()->where('id',1)->orWhere('id',4)->restore();
 
     }
 }
