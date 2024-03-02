@@ -6,11 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    @foreach($posts as $post)
+    @foreach($categories as $category)
     <ul>
-        <li>{{$post->title}}</li>
-        <li>{{$post->description}}</li>
-        <li>{{$post->category->name}}</li>
+        <li>{{$category->post->title}}</li>
+        <li>{{$category->post->description}}</li>
+        <li>{{$category->name}}</li>
+        <li>{{$category->post->status}}</li>
     </ul>
     @endforeach
 </body>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Category;
 
 class AboutController extends Controller
 {
@@ -12,7 +13,7 @@ class AboutController extends Controller
      */
     public function __invoke(Request $request)
     {
-       $posts = Post::all();
-       return view('test', compact('posts'));
+       $categories = Category::all();
+       return view('test', compact('categories'));
     }
 }
