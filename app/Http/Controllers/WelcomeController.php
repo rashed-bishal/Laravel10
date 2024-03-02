@@ -13,10 +13,8 @@ class WelcomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return Post::all();
-        //Post::where('id',1)->delete();
-        //dd('Post Deleted');
-
+        
+        return Post::onlyTrashed()->get();
 
     }
 }
