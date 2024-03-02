@@ -15,9 +15,14 @@ class Post extends Model
         'title', 'description', 'status', 'published_date', 'user_id', 'category_id',
     ];
 
+    // public function category()
+    // {
+    //     return $this->hasOne(Category::class);
+    // }
+
     public function category()
     {
-        return $this->hasOne(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
 }

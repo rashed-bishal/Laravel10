@@ -13,7 +13,7 @@ class AboutController extends Controller
      */
     public function __invoke(Request $request)
     {
-       $categories = Category::all();
-       return view('test', compact('categories'));
+       $posts = Category::find(3)->posts;
+       return view('test', compact('posts'));
     }
 }
