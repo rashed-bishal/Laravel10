@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class AboutController extends Controller
 {
@@ -11,9 +12,7 @@ class AboutController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $str1 = 'Hello World';
-        $str2 = 'Hello Bangladesh';
-
-        return view('test', compact('str1', 'str2'));
+       $posts = Post::all();
+       return view('test', compact('posts'));
     }
 }
