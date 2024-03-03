@@ -15,12 +15,13 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('posts')->create([
+        DB::table('posts')->insert([
             'title' => '1st Post',
             'description' => 'This is inside First Post',
             'status' => TRUE,
             'published_date' => date('Y-m-d'),
             'user_id' => 2063,
+            'category_id' => 2,
         ]);
 
         DB::table('posts')->insert([
@@ -29,6 +30,7 @@ class PostSeeder extends Seeder
             'status' => TRUE,
             'published_date' => date('Y-m-d'),
             'user_id' => 1040,
+            'category_id' => 1,
         ]);
 
         DB::table('posts')->insert([
@@ -37,6 +39,7 @@ class PostSeeder extends Seeder
             'status' => TRUE,
             'published_date' => date('Y-m-d'),
             'user_id' => 2450,
+            'category_id' => 3,
         ]);
 
         DB::table('posts')->insert([
@@ -45,6 +48,7 @@ class PostSeeder extends Seeder
             'status' => TRUE,
             'published_date' => date('Y-m-d'),
             'user_id' => 6410,
+            'category_id' => 2,
         ]);
 
         DB::table('posts')->insert([
@@ -53,6 +57,7 @@ class PostSeeder extends Seeder
             'status' => TRUE,
             'published_date' => date('Y-m-d'),
             'user_id' => 8070,
+            'category_id' => 1,
         ]);
 
         DB::table('posts')->insert([
@@ -61,6 +66,7 @@ class PostSeeder extends Seeder
             'status' => TRUE,
             'published_date' => date('Y-m-d'),
             'user_id' => 7650,
+            'category_id' => 3,
         ]);
         
 
