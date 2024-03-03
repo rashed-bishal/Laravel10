@@ -6,14 +6,22 @@
     <title>Document</title>
 </head>
 <body>
-    @foreach($posts as $post)
+
+    @isset($user)
     <ul>
-        <li>{{$post->title}}</li>
-        <li>{{$post->description}}</li>
-        <li>{{$post->category->name}}</li>
-        <li>{{$post->status}}</li>
+        <li>{{$user->id}}</li>
+        <li>{{$user->name}}</li>
+        <li>{{$user->email}}</li>
+        <li>{{$user->email_verified_at}}</li>
+        @foreach($user->posts as $post)
+        <ul>
+            <li>{{$post->title}}</li>
+            <li>{{$post->description}}</li>
+            <li>{{$post->published_date}}</li>
+        </ul>
+        @endforeach
     </ul>
-    @endforeach
+    @endisset
 </body>
 </html>
 

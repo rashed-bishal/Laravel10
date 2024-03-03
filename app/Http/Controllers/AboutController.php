@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\User;
 
 
 class AboutController extends Controller
@@ -15,21 +16,8 @@ class AboutController extends Controller
      */
     public function __invoke(Request $request)
     {
-        // for($i=101; $i<406; $i++)
-        // {
-        //     $post = Post::find($i);
+        $user = User::findOrFail(5);
 
-        //     $post->tags()->attach(rand(1,4));
-        // }
-
-        // dd('suxsex');
-
-        // $posts = Tag::find(4)->posts;
-
-        // return $posts;
-
-        $tags= Post::find(140)->tags;
-
-        return $tags;
+        return view('test', compact('user'));
     }
 }
