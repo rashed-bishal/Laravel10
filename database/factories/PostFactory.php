@@ -21,7 +21,7 @@ class PostFactory extends Factory
             'description' => fake()->paragraph(),
             'status' => rand(0,1),
             'published_date' => fake()->date(),
-            'user_id' => rand(1,2),
+            'user_id' => rand(1,5),
             'category_id' => rand(1,4),
 
         ];

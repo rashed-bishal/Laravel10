@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Models\Post;
+use App\Models\User;
 
 
 class PostSeeder extends Seeder
@@ -16,7 +17,8 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
-        Post::factory(450)->create();
+        Post::factory(20)->create();
+        //User::factory(5)->create();
 
     }
 }

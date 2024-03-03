@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('posts', function (Blueprint $table) {
             $table->date('published_date');
-            $table->integer('user_id');
+            $table->foreignId('user_id')->constrained('users');
         });
     }
 
