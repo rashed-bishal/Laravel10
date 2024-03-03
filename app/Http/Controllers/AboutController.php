@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
+use App\Models\Category;
+use App\Models\Tag;
+
 
 class AboutController extends Controller
 {
@@ -11,9 +15,21 @@ class AboutController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $str1 = 'Hello World';
-        $str2 = 'Hello Bangladesh';
+        // for($i=101; $i<406; $i++)
+        // {
+        //     $post = Post::find($i);
 
-        return view('test', compact('str1', 'str2'));
+        //     $post->tags()->attach(rand(1,4));
+        // }
+
+        // dd('suxsex');
+
+        // $posts = Tag::find(4)->posts;
+
+        // return $posts;
+
+        $tags= Post::find(140)->tags;
+
+        return $tags;
     }
 }

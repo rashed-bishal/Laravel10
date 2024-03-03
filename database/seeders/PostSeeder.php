@@ -6,6 +6,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use App\Models\Post;
+use App\Models\User;
 
 
 class PostSeeder extends Seeder
@@ -15,6 +17,7 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
+<<<<<<< HEAD
         DB::table('posts')->insert([
             'title' => '1st Post',
             'description' => 'This is inside First Post',
@@ -82,6 +85,10 @@ class PostSeeder extends Seeder
             'name' => 'Education',
         ]);
 
+=======
+        Post::factory(20)->create();
+        //User::factory(5)->create();
+>>>>>>> cdaefea2c9346e379b43ce8d12056d86f26ae1c4
 
     }
 }
