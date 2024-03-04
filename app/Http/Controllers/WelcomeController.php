@@ -14,7 +14,7 @@ class WelcomeController extends Controller
     public function __invoke(Request $request)
     {
         
-        return Post::onlyTrashed()->where('id',9)->forceDelete();
+       // return Post::onlyTrashed()->where('id',9)->forceDelete();
 
     }
 }
