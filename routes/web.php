@@ -34,6 +34,8 @@ Route::post('/file-upload',[FileUploadController::class, 'uploadFile'])->name('f
 
 Route::get('/erase', [FileUploadController::class, 'eraseFile']);
 
+Route::get('/download', [FileUploadController::class, 'download'])->name('download');
+
 Route::fallback(function(){
     return 'You are lost!';
 });

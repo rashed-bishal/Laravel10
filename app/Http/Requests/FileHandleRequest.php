@@ -22,7 +22,7 @@ class FileHandleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'myFile' => 'required|min:60|max:80|mimes:jpg,jpeg,png,bmp,gif',
+            'myFile' => 'required|min:4|max:80|mimes:jpg,jpeg,png,bmp,gif',
         ];
     }
 

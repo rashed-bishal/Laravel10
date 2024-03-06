@@ -32,4 +32,10 @@ class FileUploadController extends Controller
         return 'Deleted!';
 
     }
+
+
+    public function download()
+    {
+        return response()->download(storage_path('/app/public/img/sonic.jpg'));
+    }
 }

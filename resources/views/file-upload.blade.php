@@ -24,5 +24,6 @@
         @csrf
     </form>
     <img src="{{asset('/storage/img/sonic.jpg')}}" alt=""/>
+    <a href="{{route('download')}}" class="btn btn-primary">Download Image</a>
 </body>
 </html>
