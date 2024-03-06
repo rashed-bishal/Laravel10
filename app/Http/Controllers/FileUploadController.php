@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use File;
+use App\Http\Requests\FileHandleRequest;
 
 class FileUploadController extends Controller
 {
@@ -16,9 +17,9 @@ class FileUploadController extends Controller
         return view('file-upload');
     }
 
-    public function uploadFile(Request $request)
+    public function uploadFile(FileHandleRequest $request)
     {
-        $request->img->storeAs('/img', 'sonic.jpg');
+        $request->myFile->storeAs('/img', 'sonic.jpg');
         return view('file-upload');
 
     }

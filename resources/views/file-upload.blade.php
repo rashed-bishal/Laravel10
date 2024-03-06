@@ -10,10 +10,15 @@
 </head>
 <body style="text-align:center">
     <h2>This is a file uploading panel</h2>
+    @if($errors->any())
+        @foreach($errors->all() as $error)
+            <div class="alert alert-danger">{{$error}}</div>
+        @endforeach
+    @endif
     <form action="{{route('file-upload')}}" method="post" enctype="multipart/form-data">
         <div class="form-group" style="margin-right:25%; margin-left:25%">
             <label for="image" class="form-control">Upload an image</label>
-            <input type="file" name="img" class="form-control"/>
+            <input type="file" name="myFile" class="form-control"/>
         </div>
         <input type="submit" value="Upload" class="btn btn-success"/>
         @csrf
