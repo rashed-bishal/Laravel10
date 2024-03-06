@@ -16,7 +16,7 @@ class AboutController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $user = User::findOrFail(5);
+        $user = User::findOrFail(3);
 
         return view('test', compact('user'));
     }

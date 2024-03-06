@@ -5,6 +5,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\FileUploadController;  
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,12 @@ Route::resource('blog', BlogController::class);
 Route::get('login', [LoginController::class, 'index'])->name('login');
 
 Route::post('login',[LoginController::class, 'handleLogin'])->name('login.submit');
+
+Route::get('/file-upload', [FileUploadController::class, 'uploadPage']);
+
+Route::post('/file-upload',[FileUploadController::class, 'uploadFile'])->name('file-upload');
+
+Route::get('/erase', [FileUploadController::class, 'eraseFile']);
 
 Route::fallback(function(){
     return 'You are lost!';
