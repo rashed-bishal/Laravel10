@@ -4,7 +4,7 @@
 
 <div class="card">
   <div class="card-header">
-    All Posts
+    Trashed Posts
 
     <a href="{{route('posts.create')}}" class="btn-sm btn-success">Create</a>
     <a href="" class="btn-sm btn-warning">Trashed</a>
@@ -23,26 +23,22 @@
     </tr>
   </thead>
   <tbody>
-
-  @if($posts->isNotEmpty())
-      @foreach($posts as $post)
-      <tr>
-        <th scope="row">{{$post->id}}</th>
-        <td>
-          <img src="{{asset($post->image)}}" alt="" width="80">
-        </td>
-        <td>{{$post->title}}</td>
-        <td>{{$post->description}}</td>
-        <td>{{$post->category->name}}</td>
-        <td>{{$post->created_at}}</td>
-        <td>
-        <a href="" class="btn-sm btn-success">Show</a>
-          <a href="{{route('posts.edit', $post->id)}}" class="btn-sm btn-primary">Edit</a>
-          <a href="" class="btn-sm btn-danger">Delete</a>
-        </td>
+    <tr>
+      <th scope="row">1</th>
+      <td>
+        <img src="https://www.fervalle.com/wp-content/uploads/2022/07/transparent-orange-apple5eacfeae85ac29.7815306015883956945475.png" alt="" width="80">
+      </td>
+      <td>Title</td>
+      <td>Description</td>
+      <td>Category</td>
+      <td>Published Date</td>
+      <td>
+      <a href="" class="btn-sm btn-success">Show</a>
+        <a href="" class="btn-sm btn-primary">Edit</a>
+        <a href="" class="btn-sm btn-danger">Delete</a>
+      </td>
     </tr>
-      @endforeach
-  @endif
+    
   </tbody>
 </table>
   </div>

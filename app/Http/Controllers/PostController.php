@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
+use App\Models\Category;
+use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -11,7 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('app.index');
+        $posts = Post::all();
+        return view('app.index',compact('posts'));
     }
 
     /**
@@ -19,17 +23,27 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('app.create', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
-    }
+        $fileName = time().'_'.$request->image->getClientOriginalName();
+        $request->image->storeAs('uploads', $fileName);
 
+        $post = new Post();
+        $post->title = $request->title;
+        $post->description = $request->description;
+        $post->category_id = $request->category_id;
+        $post->image = $fileName;
+        $post->save();
+
+        return redirect()->route('posts.index');
+    }
     /**
      * Display the specified resource.
      */
@@ -43,7 +57,10 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $post = Post::find($id);
+        $categories = Category::all();
+
+        return view('app.edit', compact('post', 'categories'));
     }
 
     /**
