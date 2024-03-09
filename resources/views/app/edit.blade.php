@@ -11,7 +11,9 @@
   </div>
   <div class="card-body">
     <img src="{{asset($post->image)}}" alt="Image not found" width="100"/>
-    <form action="">
+    <form action="{{route('posts.update', $post->id)}}" method="POST" enctype="multipart/form-data">
+        @method('PATCH')
+        @csrf
         <div class="form-group">
             <label for="image" class="form-label">Image</label>
             <input type="file" name="image" class="form-control""/>

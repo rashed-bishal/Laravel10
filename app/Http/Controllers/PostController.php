@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
+use App\Http\Requests\PostUpdateRequest;
 use App\Models\Category;
 use App\Models\Post;
+use Illuminate\Support\Facades\Storage;
+use File;
 
 class PostController extends Controller
 {
@@ -66,9 +69,22 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PostUpdateRequest $request, string $id)
     {
-        //
+        $post = Post::find($id);
+        $post->title = $request->title;
+        $post->description = $request->description;
+        $post->category_id = $request->category_id;
+        if(isset($request->image))
+        {
+            $fileName = time().'_'.$request->image->getClientOriginalName();
+            $request->image->storeAs('uploads', $fileName);
+            File::delete(public_path($post->image));
+            $post->image = $fileName;
+        }
+        $post->update();
+
+        return redirect()->route('posts.index');
     }
 
     /**
