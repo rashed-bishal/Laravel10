@@ -7,7 +7,7 @@
     All Posts
 
     <a href="{{route('posts.create')}}" class="btn-sm btn-success">Create</a>
-    <a href="" class="btn-sm btn-warning">Trashed</a>
+    <a href="{{route('posts.trashed')}}" class="btn-sm btn-warning">Trashed</a>
   </div>
   <div class="card-body">
   <table class="table table-hover">
@@ -36,9 +36,12 @@
         <td>{{$post->category->name}}</td>
         <td>{{$post->created_at}}</td>
         <td>
-        <a href="" class="btn-sm btn-success">Show</a>
+        <a href="{{route('posts.show', $post->id)}}" class="btn-sm btn-success">Show</a>
           <a href="{{route('posts.edit', $post->id)}}" class="btn-sm btn-primary">Edit</a>
-          <a href="" class="btn-sm btn-danger">Delete</a>
+          <form action="{{route('posts.destroy', $post->id)}}" method="POST">
+            @csrf @method('DELETE')
+            <button type="submit" class="btn-sm btn-danger">Delete</button>
+          </form>
         </td>
     </tr>
       @endforeach

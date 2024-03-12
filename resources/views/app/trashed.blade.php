@@ -7,7 +7,7 @@
     Trashed Posts
 
     <a href="{{route('posts.create')}}" class="btn-sm btn-success">Create</a>
-    <a href="" class="btn-sm btn-warning">Trashed</a>
+    <a href="{{route('posts.index')}}" class="btn-sm btn-warning">All Posts</a>
   </div>
   <div class="card-body">
   <table class="table table-hover">
@@ -23,22 +23,31 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>
-        <img src="https://www.fervalle.com/wp-content/uploads/2022/07/transparent-orange-apple5eacfeae85ac29.7815306015883956945475.png" alt="" width="80">
-      </td>
-      <td>Title</td>
-      <td>Description</td>
-      <td>Category</td>
-      <td>Published Date</td>
-      <td>
-      <a href="" class="btn-sm btn-success">Show</a>
-        <a href="" class="btn-sm btn-primary">Edit</a>
-        <a href="" class="btn-sm btn-danger">Delete</a>
-      </td>
+
+  @if($posts->isNotEmpty())
+      @foreach($posts as $post)
+      <tr>
+        <th scope="row">{{$post->id}}</th>
+        <td>
+          <img src="{{asset($post->image)}}" alt="" width="80">
+        </td>
+        <td>{{$post->title}}</td>
+        <td>{{$post->description}}</td>
+        <td>{{$post->category->name}}</td>
+        <td>{{$post->created_at}}</td>
+        <td>
+        <form action="{{route('posts.recover', $post->id)}}" method="POST">
+            @csrf @method('PATCH')
+            <button type="submit" class="btn-sm btn-primary">Recover</button>
+          </form>
+          <form action="{{route('posts.force_delete', $post->id)}}" method="POST">
+            @csrf @method('DELETE')
+            <button type="submit" class="btn-sm btn-danger">Permanently Delete</button>
+          </form>
+        </td>
     </tr>
-    
+      @endforeach
+  @endif
   </tbody>
 </table>
   </div>

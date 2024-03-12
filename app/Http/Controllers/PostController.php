@@ -52,7 +52,8 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('app.show', compact('post'));
     }
 
     /**
@@ -60,7 +61,7 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
         $categories = Category::all();
 
         return view('app.edit', compact('post', 'categories'));
@@ -71,7 +72,7 @@ class PostController extends Controller
      */
     public function update(PostUpdateRequest $request, string $id)
     {
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
         $post->title = $request->title;
         $post->description = $request->description;
         $post->category_id = $request->category_id;
@@ -92,6 +93,32 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->delete();
+        
+        return redirect()->route('posts.index');
+    }
+
+    public function trashed()
+    {
+        $posts = Post::onlyTrashed()->get();
+        return view('app.trashed', compact('posts'));
+    }
+
+    public function forceDelete(string $id)
+    {
+        $post = Post::onlyTrashed()->findOrFail($id);
+        File::delete(public_path($post->image));
+        $post->forceDelete();
+
+        return redirect()->back();
+    }
+
+    public function recover(Request $reqeust, string $id)
+    {
+        $post = Post::onlyTrashed()->findOrFail($id);
+        $post->restore();
+
+        return redirect()->back();
     }
 }
