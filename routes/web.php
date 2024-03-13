@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SampleController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +20,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/sample', [SampleController::class, 'index']);
 
 Route::get('/posts/trashed', [PostController::class, 'trashed'])->name('posts.trashed');
 
