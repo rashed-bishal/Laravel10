@@ -7,8 +7,18 @@ use App\Services\PaymentService;
 
 class SampleController extends Controller
 {
-    public function index(PaymentService $paymentService)
+
+    private $paymentService;
+
+    public function __construct(PaymentService $paymentService)
     {
-        return $paymentService->paymentMethod();
+        $this->paymentService = $paymentService;
+    }
+
+    public function index()
+    {
+        //return $this->paymentService->paymentMethod();
+
+        dd(app());
     }
 }
