@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SampleController;
+use App\http\Controllers\BlogController;
 
 
 /*
@@ -22,6 +23,10 @@ Route::get('/', function () {
 
 
 Route::get('/sample', [SampleController::class, 'index']);
+
+Route::get('/custom', [SampleController::class, 'custom']);
+
+Route::get('/trait/{text}', [BlogController::class, 'index']);
 
 Route::get('/posts/trashed', [PostController::class, 'trashed'])->name('posts.trashed');
 
