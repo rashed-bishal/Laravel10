@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\PaymentService;
+use App\Facades\CustomFacade;
 
 class SampleController extends Controller
 {
@@ -20,5 +21,10 @@ class SampleController extends Controller
         //return $this->paymentService->paymentMethod();
 
         dd(app());
+    }
+
+    public function custom()
+    {
+       echo CustomFacade::messageMethod();
     }
 }

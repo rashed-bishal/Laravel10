@@ -23,6 +23,8 @@ Route::get('/', function () {
 
 Route::get('/sample', [SampleController::class, 'index']);
 
+Route::get('/custom', [SampleController::class, 'custom']);
+
 Route::get('/posts/trashed', [PostController::class, 'trashed'])->name('posts.trashed');
 
 Route::delete('/posts/{id}/delete', [PostController::class, 'forceDelete'])->name('posts.force_delete');
