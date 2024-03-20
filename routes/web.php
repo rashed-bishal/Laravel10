@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SampleController;
 use App\http\Controllers\BlogController;
-
+use App\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +25,10 @@ Route::get('/', function () {
 Route::get('/sample', [SampleController::class, 'index']);
 
 Route::get('/custom', [SampleController::class, 'custom']);
+
+Route::get('/fetch-post/{post:title}', function(Post $post){
+   return $post->title;
+});
 
 Route::get('/trait/{text}', [BlogController::class, 'index']);
 
