@@ -14,4 +14,9 @@ class BlogController extends Controller
     {
         echo $this->modText($txt);
     }
+
+    public function custom(string $title)
+    {
+        dd(slug($title));
+    }
 }

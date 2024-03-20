@@ -28,6 +28,8 @@ Route::get('/custom', [SampleController::class, 'custom']);
 
 Route::get('/trait/{text}', [BlogController::class, 'index']);
 
+Route::get('/helper/{title}', [BlogController::class, 'custom']);
+
 Route::get('/posts/trashed', [PostController::class, 'trashed'])->name('posts.trashed');
 
 Route::delete('/posts/{id}/delete', [PostController::class, 'forceDelete'])->name('posts.force_delete');
