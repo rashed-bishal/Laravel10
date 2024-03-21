@@ -42,7 +42,8 @@ Route::patch('/posts/{id}/recover', [PostController::class, 'recover'])->name('p
 
 Route::resource('/posts', PostController::class);
 
-Route::get('contact', function(){
-    return view('contact');
+Route::get('contact', function(Post $post){
+    $posts = $post->all();
+    return view('contact', compact('posts'));
 });
 

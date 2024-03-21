@@ -1,9 +1,11 @@
-<div>
-    <h1><i>Contact</i></h1>
+@extends('layouts.master')
 
-    <x-button/> 
+@section('content')
 
-    <x-forms.button/>
-
-    <x-input-field/>   
+<div class="row">
+    @foreach($posts as $post)
+         <x-post.index :post='$post'/>
+    @endforeach
 </div>
+
+@endsection
