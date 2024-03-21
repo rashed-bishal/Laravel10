@@ -41,3 +41,8 @@ Route::delete('/posts/{id}/delete', [PostController::class, 'forceDelete'])->nam
 Route::patch('/posts/{id}/recover', [PostController::class, 'recover'])->name('posts.recover');
 
 Route::resource('/posts', PostController::class);
+
+Route::get('contact', function(){
+    return view('contact');
+});
+
