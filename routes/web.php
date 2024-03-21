@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SampleController;
 use App\http\Controllers\BlogController;
@@ -45,5 +46,14 @@ Route::resource('/posts', PostController::class);
 Route::get('contact', function(Post $post){
     $posts = $post->all();
     return view('contact', compact('posts'));
+});
+
+
+Route::get('send-mail', function(){
+    Mail::raw('This is the body of the test email.', function($message){
+        $message->to('test@mextex.com')->subject('Noreply test title');
+    });
+
+    dd('Mail has been sent');
 });
 
