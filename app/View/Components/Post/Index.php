@@ -9,13 +9,12 @@ use Illuminate\View\Component;
 class Index extends Component
 {
 
-    public $post;
     /**
      * Create a new component instance.
      */
-    public function __construct($post)
+    public function __construct()
     {
-        $this->post = $post;
+        
     }
 
     /**
