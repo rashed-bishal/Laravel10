@@ -66,10 +66,21 @@ Route::get('sessions', function(Request $request)
 {
     //$data = session()->all();
 
-    //$data = $request->session()->all();
+    $data = $request->session()->all();
 
-    $data = $request->session()->get('_flash'); //get a single session data using keys
+    //$data = $request->session()->get('_flash'); //get a single session data using keys
 
     dd($data);
+});
+
+Route::get('save-session', function(Request $request)
+{
+    //session(['user_id' => '14154178541']);
+
+    //$request->session()->put(['user_status' => 'offline']);
+
+    $request->session()->put('user_operator', 'AT&T');
+
+    return redirect()->to('/sessions');
 });
 
