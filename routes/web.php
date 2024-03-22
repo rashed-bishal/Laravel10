@@ -84,3 +84,9 @@ Route::get('save-session', function(Request $request)
     return redirect()->to('/sessions');
 });
 
+Route::get('erase-session', function(Request $request){
+    // session()->forget('user_id');
+    $request->session()->forget('user_status');
+    return redirect()->to('/sessions');
+});
+
