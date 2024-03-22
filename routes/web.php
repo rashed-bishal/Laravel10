@@ -90,3 +90,9 @@ Route::get('erase-session', function(Request $request){
     return redirect()->to('/sessions');
 });
 
+Route::get('flash-session', function(Request $request){
+
+    $request->session()->flash('key', 'value of flash session');
+    return redirect()->to('/sessions');
+
+});
