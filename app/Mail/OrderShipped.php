@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Attachment;
 
 class OrderShipped extends Mailable
 {
@@ -28,7 +29,7 @@ class OrderShipped extends Mailable
     {
         return new Envelope(
             to: 'rashed.bishal@trapfrap.com',
-            subject: 'Shipment Cancelled',
+            subject: 'New 2',
         );
     }
 
@@ -49,6 +50,9 @@ class OrderShipped extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        return [
+            Attachment::fromPath(storage_path('/app/public/uploads/1710316090_apple.jpeg')),
+            Attachment::fromPath(storage_path('/app/public/uploads/1710316124_linux.jpg')),
+        ];
     }
 }
