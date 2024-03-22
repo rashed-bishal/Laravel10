@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\SampleController;
 use App\http\Controllers\BlogController;
 use App\Models\Post;
+use App\Mail\OrderShipped;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,9 +51,11 @@ Route::get('contact', function(Post $post){
 
 
 Route::get('send-mail', function(){
-    Mail::raw('This is the body of the test email.', function($message){
-        $message->to('test@mextex.com')->subject('Noreply test title');
-    });
+    // Mail::raw('This is the body of the test email.', function($message){
+    //     $message->to('test@mextex.com')->subject('Noreply test title');
+    // });
+
+    Mail::send(new OrderShipped());
 
     dd('Mail has been sent');
 });
