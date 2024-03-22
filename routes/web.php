@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SampleController;
 use App\http\Controllers\BlogController;
@@ -58,5 +59,17 @@ Route::get('send-mail', function(){
     Mail::send(new OrderShipped());
 
     dd('Mail has been sent');
+});
+
+
+Route::get('sessions', function(Request $request)
+{
+    //$data = session()->all();
+
+    //$data = $request->session()->all();
+
+    $data = $request->session()->get('_flash'); //get a single session data using keys
+
+    dd($data);
 });
 
