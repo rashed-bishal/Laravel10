@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Support\Facades\Storage;
 use File;
+use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
 {
@@ -17,7 +18,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(3);
+        $posts = Cache::remember('posts', 120, function(){
+            return Post::with('category')->paginate(7);
+        });
+
         return view('app.index',compact('posts'));
     }
 
