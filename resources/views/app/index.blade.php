@@ -4,7 +4,7 @@
 
 <div class="card">
   <div class="card-header">
-    All Posts
+    All Posts of {{auth()->user()->name}}
 
     <a href="{{route('posts.create')}}" class="btn-sm btn-success">Create</a>
     <a href="{{route('posts.trashed')}}" class="btn-sm btn-warning">Trashed</a>

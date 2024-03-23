@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,7 @@ Route::delete('/posts/{id}/delete', [PostController::class, 'forceDelete'])->nam
 Route::patch('/posts/{id}/recover', [PostController::class, 'recover'])->name('posts.recover');
 
 Route::resource('/posts', PostController::class);
+
+Route::get('authcheck', function(){
+    dd(Auth::user()->email);
+});
