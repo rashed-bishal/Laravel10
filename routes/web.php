@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,12 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+Route::get('/posts/trashed', [PostController::class, 'trashed'])->name('posts.trashed');
+
+Route::delete('/posts/{id}/delete', [PostController::class, 'forceDelete'])->name('posts.force_delete');
+
+Route::patch('/posts/{id}/recover', [PostController::class, 'recover'])->name('posts.recover');
+
+Route::resource('/posts', PostController::class);
