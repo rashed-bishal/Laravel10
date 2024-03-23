@@ -96,3 +96,9 @@ Route::get('flash-session', function(Request $request){
     return redirect()->to('/sessions');
 
 });
+
+
+Route::get('forget-cache', function(){
+    Cache::forget('posts');
+    return redirect()->route('posts.index');
+});
