@@ -34,6 +34,7 @@ class PostController extends Controller
      */
     public function create()
     {
+        $this->authorize('create_post');
         $categories = Category::all();
         return view('app.create', compact('categories'));
     }
@@ -43,6 +44,7 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
+        $this->authorize('create_post');
         $fileName = time().'_'.$request->image->getClientOriginalName();
         $request->image->storeAs('uploads', $fileName);
 
@@ -69,6 +71,7 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
+        $this->authorize('edit_post');
         $post = Post::findOrFail($id);
         $categories = Category::all();
 
@@ -80,6 +83,7 @@ class PostController extends Controller
      */
     public function update(PostUpdateRequest $request, string $id)
     {
+        $this->authorize('edit_post');
         $post = Post::findOrFail($id);
         $post->title = $request->title;
         $post->description = $request->description;
@@ -101,6 +105,7 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('delete_post');
         $post = Post::findOrFail($id);
         $post->delete();
         
@@ -109,12 +114,14 @@ class PostController extends Controller
 
     public function trashed()
     {
+        $this->authorize('delete_post');
         $posts = Post::onlyTrashed()->get();
         return view('app.trashed', compact('posts'));
     }
 
     public function forceDelete(string $id)
     {
+        $this->authorize('delete_post');
         $post = Post::onlyTrashed()->findOrFail($id);
         File::delete(public_path($post->image));
         $post->forceDelete();
@@ -124,6 +131,7 @@ class PostController extends Controller
 
     public function recover(Request $reqeust, string $id)
     {
+        $this->authorize('delete_post');
         $post = Post::onlyTrashed()->findOrFail($id);
         $post->restore();
 
