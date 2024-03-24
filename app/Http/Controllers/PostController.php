@@ -18,13 +18,15 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Cache::remember('posts-page-'.request('page',1), 120, function(){
-            return Post::with('category')->paginate(7);
-        });
+        // $posts = Cache::remember('posts-page-'.request('page',1), 120, function(){
+        //     return Post::with('category')->paginate(7);
+        // });
 
         // $posts = Cache::rememberForever('posts', function(){
         //     return Post::with('category')->paginate(10);
         // });
+
+        $posts = Post::paginate(10);
 
         return view('app.index',compact('posts'));
     }
@@ -71,8 +73,8 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        $this->authorize('update', Post::class);
         $post = Post::findOrFail($id);
+        $this->authorize('update', $post);
         $categories = Category::all();
 
         return view('app.edit', compact('post', 'categories'));
@@ -83,8 +85,8 @@ class PostController extends Controller
      */
     public function update(PostUpdateRequest $request, string $id)
     {
-        $this->authorize('update', Post::class);
         $post = Post::findOrFail($id);
+        $this->authorize('update', $post);
         $post->title = $request->title;
         $post->description = $request->description;
         $post->category_id = $request->category_id;
@@ -105,8 +107,9 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->authorize('delete', Post::class);
+        
         $post = Post::findOrFail($id);
+        $this->authorize('delete', $post);
         $post->delete();
         
         return redirect()->route('posts.index');
@@ -114,15 +117,15 @@ class PostController extends Controller
 
     public function trashed()
     {
-        $this->authorize('delete', Post::class);
         $posts = Post::onlyTrashed()->get();
+        $this->authorize('create', Post::class);
         return view('app.trashed', compact('posts'));
     }
 
     public function forceDelete(string $id)
     {
-        $this->authorize('delete', Post::class);
         $post = Post::onlyTrashed()->findOrFail($id);
+        $this->authorize('delete', $post);
         File::delete(public_path($post->image));
         $post->forceDelete();
 
@@ -131,8 +134,8 @@ class PostController extends Controller
 
     public function recover(Request $reqeust, string $id)
     {
-        $this->authorize('delete', Post::class);
         $post = Post::onlyTrashed()->findOrFail($id);
+        $this->authorize('delete', $post);
         $post->restore();
 
         return redirect()->back();
