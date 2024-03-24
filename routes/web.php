@@ -4,6 +4,10 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PostPublished;
+use App\Jobs\SendMail;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -55,4 +59,14 @@ Route::group(['middleware'=>'auth'], function(){
     Route::patch('/posts/{id}/recover', [PostController::class, 'recover'])->name('posts.recover');
 
     Route::resource('/posts', PostController::class);
+});
+
+
+
+Route::get('send', function(){
+
+
+    SendMail::dispatch();
+
+    dd('Email sent successfully');
 });
