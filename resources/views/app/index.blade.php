@@ -5,9 +5,12 @@
 <div class="card">
   <div class="card-header">
     All Posts of {{auth()->user()->name}}
-
+    @can('create_post')
     <a href="{{route('posts.create')}}" class="btn-sm btn-success">Create</a>
+    @endcan
+    @can('delete_post')
     <a href="{{route('posts.trashed')}}" class="btn-sm btn-warning">Trashed</a>
+    @endcan
   </div>
   <div class="card-body">
   <table class="table table-hover">
@@ -37,11 +40,15 @@
         <td>{{$post->created_at}}</td>
         <td>
         <a href="{{route('posts.show', $post->id)}}" class="btn-sm btn-success">Show</a>
+          @can('edit_post')
           <a href="{{route('posts.edit', $post->id)}}" class="btn-sm btn-primary">Edit</a>
+          @endcan
+          @can('delete_post')
           <form action="{{route('posts.destroy', $post->id)}}" method="POST">
             @csrf @method('DELETE')
             <button type="submit" class="btn-sm btn-danger">Delete</button>
           </form>
+          @endcan
         </td>
     </tr>
       @endforeach
