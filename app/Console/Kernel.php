@@ -10,6 +10,7 @@ class Kernel extends ConsoleKernel
 
     protected $commands = [
         \App\Console\Commands\GreetCommand::class,
+        \App\Console\Commands\MyLogger::class,
     ];
     /**
      * Define the application's command schedule.
@@ -17,6 +18,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->command('log:me')->everyTenSeconds();
     }
 
     /**
