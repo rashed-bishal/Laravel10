@@ -13,12 +13,13 @@ class PostPublished extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $email;
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(string $email)
     {
-        //
+        $this->email = $email;
     }
 
     /**
@@ -27,7 +28,7 @@ class PostPublished extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            to: 'administrator@gcx.cc',
+            to: $this->email,
             subject: 'Post Published',
         );
     }

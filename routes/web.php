@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PostPublished;
 use App\Jobs\SendMail;
-
+use App\Events\MyTestEvent;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,4 +69,10 @@ Route::get('send', function(){
     SendMail::dispatch();
 
     dd('Email sent successfully');
+});
+
+Route::get('send-mail-event-listener', function(){
+    $email = 'db@gmail.com';
+    event(new MyTestEvent($email));
+    dd('email has been sent.');
 });
