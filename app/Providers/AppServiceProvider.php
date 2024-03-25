@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use App\Services\CardService;
 use Illuminate\Support\Facades\View;
+use App\Models\Post;
+use App\Observers\PostObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,5 +27,7 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
 
         View::share('site_name', strtoupper('indicatorfx signals'));
+
+        Post::observe(PostObserver::class);
     }
 }
